@@ -15,8 +15,17 @@ typedef struct {
     double R;   /* measurement noise covariance */
 } Kalman_State;
 
+/* extern "C" so C++ code can link against this C library without name mangling */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void   Kalman_Init(Kalman_State* state, double initial_x, double initial_P,
                    double Q, double R);
 double Kalman_Update(Kalman_State* state, double measurement);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

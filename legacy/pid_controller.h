@@ -13,6 +13,11 @@ typedef struct {
     double integral;
 } PID_State;
 
+/* extern "C" so C++ code can link against this C library without name mangling */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Init must be called once before using */
 void PID_Init(PID_State* state);
 
@@ -22,5 +27,9 @@ double PID_Step(PID_State* state, double setpoint, double measured,
 
 /* Reset state */
 void PID_Reset(PID_State* state);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
